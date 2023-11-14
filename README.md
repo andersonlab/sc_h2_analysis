@@ -7,7 +7,7 @@ For the purpose of this analysis, the instructions described in the [CELLECT-LDS
 
 ## GWAS
 
-Next, we use the IBD, CD and UC summary statistics from De Lange et al. which we have provided in this repository, as well as Educational Attainment (Lee et al.) and Height (Yengo et al.) GWAS sumstats (as negative controls). Precuse instructions for how to download the EA other GWAS can be found in the [CELLECT GitHub repo](https://github.com/perslab/CELLECT/wiki/CELLECT-LDSC-Tutorial#step-1-download-and-munge-gwas). The script `mtag_munge.py` can be found in this repo `sc_heritability_analysis/CELLECT/ldsc/mtag_munge.py`.
+Next, we use the IBD, CD and UC summary statistics from De Lange et al. which we have provided in this repository, as well as Educational Attainment (Lee et al.) and Height (Yengo et al.) GWAS sumstats (as negative controls). Precuse instructions for how to download the EA other GWAS can be found in the [CELLECT GitHub repo](https://github.com/perslab/CELLECT/wiki/CELLECT-LDSC-Tutorial#step-1-download-and-munge-gwas). The script `mtag_munge.py` can be found in this repo `sc_h2_analysis/CELLECT/ldsc/mtag_munge.py`.
 
 * **Ulcerative colitis**
   * [GCST004133](https://www.ebi.ac.uk/gwas/studies/GCST004133)
@@ -42,7 +42,7 @@ Install dependencies
 ```bash
 conda install -c conda-forge git-lfs
 # Install repo somewhere with minimum 15GB storage spare
-git clone --recurse-submodules https://github.com/andersonlab/sc_heritability_analysis.git 
+git clone --recurse-submodules https://github.com/andersonlab/sc_h2_analysis.git 
 conda env create -f sc_heritability_env.yml
 
 conda activate sc_heritability
@@ -51,11 +51,11 @@ conda activate sc_heritability
 Set up environment
 
 ```bash
-export PROJECT_HOME=~/single-cell/sc_heritability_analysis
-export DATASET=freeze03-ti-cd_healthy
+export PROJECT_HOME=~/single-cell/sc_h2_analysis
+export DATASET=Discovery_TI
 export STUDY_DIR=$PROJECT_HOME/studies/gut-freeze003/ti-cd_healthy
 
-mkdir -p $STUDY_DIR/{plots/{pdf,png},results,data}
+mkdir -p $STUDY_DIR/results
 ```
 
 
@@ -63,7 +63,7 @@ Run CELLEX
 ```bash
 cd $PROJECT_HOME
 ./src/run_CELLEX.py \
---h5_anndata Discovery.h5ad \
+--h5_anndata $DATASET.h5ad \
 --output_file $STUDY_DIR/results/$DATASET \
 --annotation_columns Cell-type \
 --verbose True
