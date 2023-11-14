@@ -1,3 +1,4 @@
 [submodule "CELLECT"]
 	path = CELLECT
 	url = git@github.com:perslab/CELLECT.git
+	branch = master
